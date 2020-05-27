@@ -1,25 +1,3 @@
-# vue-ff-video
+# 视频网站前端部分
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-"# ff_video_vue" 
+## 本网站使用vue.js+element UI开发
