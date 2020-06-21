@@ -2,8 +2,8 @@
 <div id="search">
   <el-container>
     <el-header><web-nav></web-nav></el-header>
-    <el-row><el-col :xs="22" :lg="22" :push="1" :md="24" :sm="24" :xm="24">
-      <el-main>
+    <el-row><el-col :xs="22" :lg="22" :push="ajust_body_width()" :md="24" :sm="24" :xm="24">
+      <el-main :style="{padding: body_padding}">
         <el-row :gutter="20">
     <el-col :xl="17" :lg="17" :md="24" :sm="24" :xs="24">
       <h3>搜索结果</h3>
@@ -89,6 +89,8 @@ import footer from '../components/footer'
 export default {
   data () {
     return {
+      body_padding: '20px',
+      body_width: document.body.clientWidth,
       flim_list: [{ id: 1, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
         { id: 2, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
         { id: 3, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
@@ -98,6 +100,18 @@ export default {
         { id: 7, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
       list_header_color: ['#ff4a4a', '#ff7701', '#ffb400', '#eee', '#eee', '#eee', '#eee'],
       list_color: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#333333', '#333333', '#333333', '#333333']
+    }
+  },
+  methods: {
+    ajust_body_width () {
+      const width = this.body_width
+      console.log(width)
+      if (width < 922) {
+        this.body_padding = 0 + 'px'
+        return 0
+      }
+      this.body_padding = 20 + 'px'
+      return 1
     }
   },
   components: {

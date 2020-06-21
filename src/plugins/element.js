@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import {
+  // eslint-disable-next-line no-unused-vars
+  Scrollbar,
   Pagination,
   Dialog,
   Autocomplete,
@@ -70,6 +72,7 @@ import {
   Notification
 } from 'element-ui'
 
+Vue.use(Scrollbar)
 Vue.use(Image)
 Vue.use(Pagination)
 Vue.use(Dialog)

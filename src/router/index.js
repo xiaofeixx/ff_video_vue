@@ -4,6 +4,13 @@ import Home from '../views/Home.vue'
 import Film from '../views/film'
 // eslint-disable-next-line no-unused-vars
 import search from '../views/search'
+import player from '../views/play'
+import about from '../views/About'
+import test from '../views/test'
+import tv from '../views/tv'
+import cartoon from '../views/cartoon'
+import child from '../views/child'
+import variety from '../views/variety'
 
 Vue.use(VueRouter)
 
@@ -20,6 +27,34 @@ const routes = [
   {
     path: '/search',
     component: search
+  },
+  {
+    path: '/player',
+    component: player
+  },
+  {
+    path: '/about',
+    component: about
+  },
+  {
+    path: '/test',
+    component: test
+  },
+  {
+    path: '/tv',
+    component: tv
+  },
+  {
+    path: '/cartoon',
+    component: cartoon
+  },
+  {
+    path: '/child',
+    component: child
+  },
+  {
+    path: '/variety',
+    component: variety
   }
 ]
 
