@@ -7,74 +7,28 @@
         <el-row :gutter="20">
     <el-col :xl="17" :lg="17" :md="24" :sm="24" :xs="24">
       <h3>搜索结果</h3>
-        <div class="search_item" v-for="o in 4" :key="o" style="margin-top: 20px;line-height: 140%">
+        <div class="search_item" v-for="(item, index) in flim_list" :key="index" style="margin-top: 20px;line-height: 140%">
           <el-card :body-style="{ padding: '0px' }">
 <!--            <img src="http://cn2.3days.cc/1571767207734264.jpeg" class="image" style="float: left;width: 30%">-->
            <el-row :gutter="20">
              <el-col :xl="4" :lg="4" :md="4" :sm="4" :xs="9" >
-            <div class="bg_div_image"></div>
+            <div class="bg_div_image" :style="{backgroundImage: 'url('+item.img_url+')'}"></div>
              </el-col>
              <el-col :xl="20" :lg="20" :md="20" :sm="20" :xs="15">
             <div class="film_detail"  >
-              <h3 style="margin: 20px 0 10px" ><a>电影名</a></h3>
-             <p><span class="text-mute">导演：</span>导演名</p>
-             <p><span class="text-mute">导演：</span>导演名</p>
-             <p class="hidden-sm-and-down"><span class="text-mute">导演：</span>导演名<span class="text-mute">地区：</span>地区名<span class="hidden-md-and-down text-mute">年份:</span>2020年</p>
-              <p><el-button type="warning" size="small">点击播放</el-button><el-button size="small">查看详情</el-button></p>
+              <h3 style="margin: 20px 0 10px" ><a>{{item.video_name}}</a></h3>
+             <p><span class="text-mute">导演：</span>{{item.director}}</p>
+             <p><span class="text-mute">演员：</span>{{item.performer}}</p>
+             <p class="hidden-sm-and-down"><span class="text-mute">地区：</span>{{item.region}}</p>
+              <p><el-button @click="go_play(item)" type="warning" size="small">点击播放</el-button>
+<!--                <el-button size="small">查看详情</el-button>-->
+              </p>
             </div>
            </el-col>
            </el-row>
           </el-card>
         </div>
     </el-col>
-          <el-col  :xl="7" :lg="7" >
-        <div class="Recommended_list_1" style="margin-top: 25px">
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span>电影总榜单</span>
-              <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-            </div>
-            <div class="first_content_list clearfix" :style="{width: '300px', marginBottom: '10px', clear: 'both'}">
-              <a href="#" ></a>
-              <div class="first_content_list_detail" style="float: left;margin-left: 10px">
-                <h4 ><a>特警小飞龙</a></h4>
-                <p><span>类型:</span>喜剧片<span>地区:</span>不详</p>
-                <p><span>主演</span>不详</p>
-              </div>
-            </div>
-            <div class="bottom_list">
-              <div v-for="item in flim_list" :key="item.id" class="text item" style="margin-top: 10px">
-                      <span :style="{backgroundColor: list_header_color[item.id-1],width: '18px',height:'18px',display: 'block',float: 'left',
-                      fontSize: '12px',marginRight: '10px',textAlign: 'center',Color: list_color[item.id-1]}">{{item.id}}</span>
-                <div>{{item.name}}</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
-            <div class="Recommended_list_2" style="margin-top: 25px">
-              <el-card class="box-card">
-                <div slot="header" class="clearfix">
-                  <span>电影总榜单</span>
-                  <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-                </div>
-                <div class="first_content_list clearfix" :style="{width: '300px', marginBottom: '10px', clear: 'both'}">
-                  <a href="#" ></a>
-                  <div class="first_content_list_detail" style="float: left;margin-left: 10px">
-                    <h4 ><a>特警小飞龙</a></h4>
-                    <p><span>类型:</span>喜剧片<span>地区:</span>不详</p>
-                    <p><span>主演</span>不详</p>
-                  </div>
-                </div>
-                <div class="bottom_list">
-                  <div v-for="item in flim_list" :key="item.id" class="text item" style="margin-top: 10px">
-                      <span :style="{backgroundColor: list_header_color[item.id-1],width: '18px',height:'18px',display: 'block',float: 'left',
-                      fontSize: '12px',marginRight: '10px',textAlign: 'center',Color: list_color[item.id-1]}">{{item.id}}</span>
-                    <div>{{item.name}}</div>
-                  </div>
-                </div>
-              </el-card>
-            </div>
-          </el-col>
         </el-row>
       </el-main>
     </el-col></el-row>
@@ -90,14 +44,11 @@ export default {
   data () {
     return {
       body_padding: '20px',
+      pageNo: 0,
+      pageSize: 20,
+      content: '',
       body_width: document.body.clientWidth,
-      flim_list: [{ id: 1, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 2, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 3, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 4, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 5, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 6, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 7, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
+      flim_list: [{ id: 1, video_name: '热血少年', performer: '黄子韬,张雪迎,刘宇', img_url: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
       list_header_color: ['#ff4a4a', '#ff7701', '#ffb400', '#eee', '#eee', '#eee', '#eee'],
       list_color: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#333333', '#333333', '#333333', '#333333']
     }
@@ -112,6 +63,38 @@ export default {
       }
       this.body_padding = 20 + 'px'
       return 1
+    },
+    getSearchResult () {
+      const content = this.$route.query.content
+      // eslint-disable-next-line no-undef
+      axios.get('pub/video/search', {
+        params: {
+          keywords: content,
+          pageNo: this.pageNo,
+          pageSize: this.pageSize
+        }
+      }).then((res) => {
+        this.flim_list = res.data
+        console.log(this.flim_list)
+      })
+    },
+    go_play (item) {
+      if (!item.category) {
+        this.$router.push({
+          path: '/film_player',
+          query: {
+            id: item.id
+          }
+        })
+      } else {
+        this.$router.push({
+          path: '/iPlayer',
+          query: {
+            id: item.id,
+            category: item.category
+          }
+        })
+      }
     }
   },
   components: {
@@ -119,6 +102,14 @@ export default {
     'web-nav': header,
     // eslint-disable-next-line vue/no-unused-components
     'web-footer': footer
+  },
+  created () {
+    this.getSearchResult()
+  },
+  watch: {
+    $route () {
+      this.getSearchResult()
+    }
   }
 }
 </script>

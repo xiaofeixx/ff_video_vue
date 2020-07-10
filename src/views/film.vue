@@ -64,12 +64,16 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in flim" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                 <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}">
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                 <div class="bg_div_image"  :style="heandler(item)">
                  </div>
+                  </router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll"> <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                      <span v-cloak style="white-space: nowrap">{{item.videoName}}</span></router-link></el-scrollbar>
                     <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap">{{item.performer}}</p></el-scrollbar>
                   </div>
+
                 </el-card>
               </el-col>
             </el-row>
@@ -86,7 +90,7 @@
               :page-size="pageSize"
               background
               layout="total, prev, pager, next, jumper"
-              :total="200">
+              :total="counts.counts">
             </el-pagination>
           </div>
       </el-col></el-row>
@@ -110,14 +114,7 @@ export default {
       currentPageWeb: 1,
       pageSize: 48,
       filter_result: { sort: '最热', type: '全部', region: '全部', year: '全部', postage: '全部', currentPage: 0, pageSize: 48 },
-      flim: [{ id: 1, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 2, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 3, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 4, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 5, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 6, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 7, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 8, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
+      flim: [{ id: 1, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
       video_filter: {
         sort: ['最新', '最热', '好评', '口碑好评', '高分好评', '豆瓣高分'],
         // type: ['全部', '偶像爱情', '古装历史', '玄幻史诗', '都市生活', '罪案谍战', '历险科幻', '军旅抗战', '喜剧', '武侠江湖', '青春校园', '时代传奇', '体育电竞', '真人动漫', '网络剧', '独播'],
@@ -133,7 +130,9 @@ export default {
       body_padding: '20px',
       body_width: document.body.clientWidth,
       font_size: '14px', // 字体大小改变,
-      left_move: '0'
+      left_move: '0',
+      back_img: require('../assets/image/hover-back.png'),
+      counts: { counts: 200 }
     }
   },
   methods: {
@@ -180,6 +179,15 @@ export default {
         this.flim = res.data
         console.log(res.data)
       })
+    },
+    heandler (item) {
+      return { backgroundImage: 'url(' + item.imgUrl + ')' }
+    },
+    getPageCounts () {
+      // eslint-disable-next-line no-undef
+      axios.get('/pub/film/filmCount').then((res) => {
+        this.counts = res.data
+      })
     }
   },
   components: {
@@ -190,6 +198,7 @@ export default {
   },
   created () {
     this.getSrceem(1)
+    this.getPageCounts()
   }
 }
 </script>

@@ -6,11 +6,12 @@ import Film from '../views/film'
 import search from '../views/search'
 import player from '../views/play'
 import about from '../views/About'
-import test from '../views/test'
 import tv from '../views/tv'
 import cartoon from '../views/cartoon'
 import child from '../views/child'
 import variety from '../views/variety'
+import iPlayer from '../views/iplayer'
+import filmPlayer from '../views/film_player'
 
 Vue.use(VueRouter)
 
@@ -37,10 +38,6 @@ const routes = [
     component: about
   },
   {
-    path: '/test',
-    component: test
-  },
-  {
     path: '/tv',
     component: tv
   },
@@ -55,6 +52,14 @@ const routes = [
   {
     path: '/variety',
     component: variety
+  },
+  {
+    path: '/iPlayer',
+    component: iPlayer
+  },
+  {
+    path: '/film_player',
+    component: filmPlayer
   }
 ]
 

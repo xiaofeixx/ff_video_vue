@@ -51,6 +51,5 @@ a:hover{
     -moz-background-size: 100% 100%;text-align: right;
 }
 .bg_div_image:hover{
-    background: url('../image/hover-back.png');
-    z-index: 1;
+   transform: scale(1.05);
 }

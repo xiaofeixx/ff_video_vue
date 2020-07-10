@@ -19,25 +19,19 @@
              <el-col :xl="2" :lg="2" :md="2" class="hidden-sm-and-down" ><el-menu-item index="/variety">综艺</el-menu-item></el-col>
              <el-col :xl="2" :lg="2"  class="hidden-md-and-down"> <el-menu-item index="/child" >少儿</el-menu-item></el-col>
              <el-col :xl="2" :lg="2" :md="2" :sm="3" :xs="4"><el-menu-item ><a target="_blank">
-               <el-dropdown @command="handleCommand">
+               <el-dropdown >
   <span class="el-dropdown-link">
     频道<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
                  <el-dropdown-menu slot="dropdown">
                    <el-card class="box-card" :body-style="{width: cardWidth}">
                     <el-row :gutter="20">
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-dropdown-item command="a"><el-button>电影</el-button></el-dropdown-item></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
-                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button>电视剧</el-button></el-col>
+                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button @click="handleCommand('/')" size="small">首页</el-button></el-col>
+                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button @click="handleCommand('/tv')" size="small">电视剧</el-button></el-col>
+                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button @click="handleCommand('/cartoon')" size="small">动漫</el-button></el-col>
+                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button @click="handleCommand('/child')" size="small">少儿</el-button></el-col>
+                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button @click="handleCommand('/variety')" size="small">综艺</el-button></el-col>
+                      <el-col :xl="4" :lg="4" :md="4" :sm="6" :xs="6"><el-button @click="handleCommand('/film')" size="small">电影</el-button></el-col>
                     </el-row>
                    </el-card>
                  </el-dropdown-menu>
@@ -47,8 +41,9 @@
                <el-menu-item style="background-color: #FFFFFF">
                  <el-input
                    placeholder="请输入资源信息"
-                   suffix-icon="el-icon-search"
+                   v-model="searchContent"
                  >
+                   <i @click="submitSearch" slot="suffix" class="el-icon-search"></i>
                  </el-input>
                </el-menu-item>
              </el-col>
@@ -67,7 +62,7 @@
             <el-input v-model="form.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="密码" :label-width="formLabelWidth">
-            <el-input v-model="form.name"  autocomplete="off"></el-input>
+            <el-input v-model="form.password" show-password  autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer" style="text-align: center">
@@ -76,6 +71,7 @@
         </div>
         </el-dialog>
       </div>
+<!--   注册页面   -->
     </div>
 </template>
 
@@ -85,6 +81,7 @@ export default {
   data () {
     return {
       activeIndex: '',
+      searchContent: '',
       dialogWidth: 0,
       cardWidth: 0,
       url: require('../assets/image/logo1.png'),
@@ -115,7 +112,8 @@ export default {
         delivery: false,
         type: [],
         resource: '',
-        desc: ''
+        desc: '',
+        password: ''
       },
       formLabelWidth: '120px'
     }
@@ -125,7 +123,7 @@ export default {
   },
   methods: {
     handleCommand (command) {
-      alert(command)
+      this.$router.push(command)
     },
     setDialogWidth () {
       console.log(document.body.clientWidth)
@@ -143,6 +141,15 @@ export default {
       this.activeIndex = index
       console.log(this.activeIndex)
       // this.$router.push(index)
+    },
+    submitSearch () {
+      // eslint-disable-next-line no-undef
+      if (this.searchContent === '') {
+        return
+      }
+      this.$router.push({
+        path: '/search', query: { content: this.searchContent }
+      })
     }
   }
 }

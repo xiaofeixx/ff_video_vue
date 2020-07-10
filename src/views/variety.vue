@@ -64,11 +64,16 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in flim" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}">
-
+                  <router-link :to="{path: '/iPlayer',query:{id: item.id,category: item.region}}">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}">
                   </div>
+                  </router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll">
+                      <router-link :to="{path: '/iPlayer',query:{id: item.id,category: item.region}}">
+                        <span style="white-space: nowrap">{{item.videoName}}</span>
+                      </router-link>
+                    </el-scrollbar>
                     <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap">{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
@@ -87,7 +92,7 @@
                   :page-size="pageSize"
                   background
                   layout="total, prev, pager, next, jumper"
-                  :total="200">
+                  :total="video_count.counts">
                 </el-pagination>
               </div>
             </el-col></el-row>
@@ -133,7 +138,8 @@ export default {
       body_padding: '20px',
       body_width: document.body.clientWidth,
       font_size: '14px', // 字体大小改变,
-      left_move: '0'
+      left_move: '0',
+      video_count: { counts: 200 }
     }
   },
   methods: {
@@ -180,6 +186,16 @@ export default {
         this.flim = res.data
         console.log(res.data)
       })
+    },
+    getVideoCount () {
+      // eslint-disable-next-line no-undef
+      axios.get('/pub/video/videoCount', {
+        params: {
+          category: '综艺'
+        }
+      }).then((res) => {
+        this.video_count = res.data
+      })
     }
   },
   components: {
@@ -190,6 +206,7 @@ export default {
   },
   created () {
     this.getSrceem(1)
+    this.getVideoCount()
   }
 }
 </script>

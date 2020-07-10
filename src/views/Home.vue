@@ -13,9 +13,9 @@
   <el-row :gutter="20" >
     <el-col  v-for=" item in flim" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
       <el-card :body-style="{ padding: '0px' }">
-        <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+        <router-link :to="{path: '/film_player',query:{id: item.id}}"><div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div></router-link>
         <div style="padding: 14px;line-height: 20px" >
-         <el-scrollbar class="page-component__scroll"> <span style="overflow: hidden;white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+          <el-scrollbar class="page-component__scroll"> <router-link :to="{path: '/film_player',query:{id: item.id}}"><span style="overflow: hidden;white-space: nowrap">{{item.videoName}}</span></router-link></el-scrollbar>
          <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap">{{item.performer}}</p></el-scrollbar>
         </div>
       </el-card>
@@ -31,9 +31,10 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in film_2" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div></router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll"><router-link :to="{path: '/film_player',query:{id: item.id}}"><span style="white-space: nowrap">{{item.videoName}}</span></router-link></el-scrollbar>
                     <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap">{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
@@ -50,7 +51,7 @@
                     <div class="must_new" style="padding-bottom: 15px" v-for="(item,index) in film_2n" :key="index">
                       <span :style="{backgroundColor: list_header_color[index], width: '18px', height: '18px',display: 'block',
                        float: 'left', fontSize: '12px', marginRight: '10px', textAlign: 'center', Color: list_color[index]}" >{{index+1}}</span>
-                      <div>{{item.videoName}}</div>
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}"><div>{{item.videoName}}</div></router-link>
                     </div>
                   </el-card>
                 </div>
@@ -66,9 +67,11 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in film_3" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}"><div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div></router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll">
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                        <span style="white-space: nowrap">{{item.videoName}}</span></router-link></el-scrollbar>
                    <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap">{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
@@ -85,7 +88,7 @@
                     <div class="must_new" style="padding-bottom: 15px" v-for="(item,index) in film_3n" :key="index">
                       <span :style="{backgroundColor: list_header_color[index], width: '18px', height: '18px',display: 'block',
                        float: 'left', fontSize: '12px', marginRight: '10px', textAlign: 'center', Color: list_color[index]}" >{{index+1}}</span>
-                      <div>{{item.videoName}}</div>
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}"><div>{{item.videoName}}</div></router-link>
                     </div>
                   </el-card>
                 </div>
@@ -101,9 +104,12 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in film_4" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div></router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                  <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                  <el-scrollbar class="page-component__scroll">
+                    <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                      <span style="white-space: nowrap">{{item.videoName}}</span></router-link></el-scrollbar>
                    <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap ">{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
@@ -120,7 +126,7 @@
                     <div class="must_new" style="padding-bottom: 15px" v-for="(item,index) in film_4n" :key="index">
                       <span :style="{backgroundColor: list_header_color[index], width: '18px', height: '18px',display: 'block',
                        float: 'left', fontSize: '12px', marginRight: '10px', textAlign: 'center', Color: list_color[index]}" >{{index+1}}</span>
-                      <div>{{item.videoName}}</div>
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}"><div>{{item.videoName}}</div></router-link>
                     </div>
                   </el-card>
                 </div>
@@ -136,9 +142,12 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in film_5" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div></router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll">
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}"><span style="white-space: nowrap">{{item.videoName}}</span>
+                      </router-link></el-scrollbar>
                     <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap ">{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
@@ -155,7 +164,7 @@
                     <div class="must_new" style="padding-bottom: 15px" v-for="(item,index) in film_5n" :key="index">
                       <span :style="{backgroundColor: list_header_color[index], width: '18px', height: '18px',display: 'block',
                        float: 'left', fontSize: '12px', marginRight: '10px', textAlign: 'center', Color: list_color[index]}" >{{index+1}}</span>
-                      <div>{{item.videoName}}</div>
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}"><div>{{item.videoName}}</div></router-link>
                     </div>
                   </el-card>
                 </div>
@@ -171,9 +180,14 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in film_6" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div></router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll">
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                        <span style="white-space: nowrap">{{item.videoName}}</span>
+                      </router-link>
+                    </el-scrollbar>
                     <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap ">{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
@@ -190,7 +204,9 @@
                     <div class="must_new" style="padding-bottom: 15px" v-for="(item,index) in film_6n" :key="index">
                       <span :style="{backgroundColor: list_header_color[index], width: '18px', height: '18px',display: 'block',
                        float: 'left', fontSize: '12px', marginRight: '10px', textAlign: 'center', Color: list_color[index]}" >{{index+1}}</span>
-                      <div>{{item.videoName}}</div>
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                        <div>{{item.videoName}}</div>
+                      </router-link>
                     </div>
                   </el-card>
                 </div>
@@ -206,10 +222,15 @@
             <el-row :gutter="20">
               <el-col  v-for=" item in film_7" :key="item.id" :xl="3" :lg="3" :md="6" :sm="8" :xs="8">
                 <el-card :body-style="{ padding: '0px' }">
-                  <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+item.imgUrl+')'}"></div>
+                  </router-link>
                   <div style="padding: 14px;line-height: 20px" >
-                    <el-scrollbar class="page-component__scroll"><span style="white-space: nowrap">{{item.videoName}}</span></el-scrollbar>
-                    <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap ">{{item.performer}}</p></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll">
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                      <span style="white-space: nowrap" v-cloak>{{item.videoName}}</span>
+                    </router-link></el-scrollbar>
+                    <el-scrollbar class="page-component__scroll"><p style="margin-top: 5px;font-size: 12px;color: #999;white-space: nowrap " v-cloak>{{item.performer}}</p></el-scrollbar>
                   </div>
                 </el-card>
               </el-col>
@@ -225,7 +246,9 @@
                     <div class="must_new" style="padding-bottom: 15px" v-for="(item,index) in film_7n" :key="index">
                       <span :style="{backgroundColor: list_header_color[index], width: '18px', height: '18px',display: 'block',
                        float: 'left', fontSize: '12px', marginRight: '10px', textAlign: 'center', Color: list_color[index]}" >{{index+1}}</span>
-                      <div>{{item.videoName}}</div>
+                      <router-link :to="{path: '/film_player',query:{id: item.id}}">
+                        <div v-cloak>{{item.videoName}}</div>
+                      </router-link>
                     </div>
                   </el-card>
                 </div>
@@ -336,17 +359,17 @@
             <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <h3 style="font-weight: 400">银幕巨星</h3>
-                <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+                <el-button style="float: right; padding: 3px 0" type="text">换一批</el-button>
               </div>
               <el-row :gutter="20">
-                <el-col :xs="12" :lg="3" :md="6" :sm="6" :xl="3" v-for="o in 8" :key="o">
+                <el-col :xs="12" :lg="3" :md="6" :sm="6" :xl="3" v-for="(item,index) in star_list" :key="index">
                   <el-card :body-style="{ padding: '0px',margin: '0px', position: 'relative',top: '-20px'}">
 <!--                    <img src="http://imgwx3.2345.com/dypcimg/star/img/a/8/24330/photo_192x262.jpg?1509946884" class="image" style="z-index: -1">-->
-                    <div class="bg_div_image" style="background-image: url('http://imgwx3.2345.com/dypcimg/star/img/a/8/24330/photo_192x262.jpg?1509946884')">
+                    <div class="bg_div_image" :style="{backgroundImage: 'url('+ item.img+ ')'}">
                       <span style="color: #FFFFFF;font-size: 12px">演员</span>
                     </div>
                       <div style="padding: 14px;text-align: center">
-                        <span>关晓彤</span>
+                        <span v-cloak>{{item.name}}</span>
                     </div>
                   </el-card>
                 </el-col>
@@ -381,28 +404,10 @@ export default {
       body_padding: '20px',
       film_temp: [{ id: 1, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
       body_width: document.body.clientWidth,
-      flim: [{ id: 1, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 2, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 3, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 4, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 5, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 6, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 7, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 8, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
-      film_2: [{ id: 1, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 2, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 3, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 4, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 5, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 6, videoName: '热血少年', performer: '黄子韬,张雪迎,刘宇', imgUrl: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
+      flim: [],
+      film_2: [],
       //  电影榜单
-      flim_list: [{ id: 1, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 2, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 3, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 4, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 5, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 6, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' },
-        { id: 7, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
+      flim_list: [{ id: 1, name: '热血少年', performer: '黄子韬,张雪迎,刘宇', image: 'http://cn2.3days.cc/1571767207734264.jpeg' }],
       list_header_color: ['#ff4a4a', '#ff7701', '#ffb400', '#eee', '#eee', '#eee', '#eee'],
       list_color: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#333333', '#333333', '#333333', '#333333'],
       film_3: [],
@@ -415,7 +420,16 @@ export default {
       film_4n: [],
       film_5n: [],
       film_6n: [],
-      film_7n: []
+      film_7n: [],
+      star_list: [{ name: '胡歌', img: require('../assets/image/star/hg.png') },
+        { name: '刘亦菲', img: require('../assets/image/star/lyf.jpg') },
+        { name: '宋钟基', img: require('../assets/image/star/szj.jpg') },
+        { name: '汪东城', img: require('../assets/image/star/wdc.jpg') },
+        { name: '徐志贤', img: require('../assets/image/star/xzx.jpg') },
+        { name: '周杰伦', img: require('../assets/image/star/zjl.jpg') },
+        { name: '张敏', img: require('../assets/image/star/zm.jpg') },
+        { name: '周星驰', img: require('../assets/image/star/zxc.jpg') }
+      ]
       // filter_result: { sort: '最热', type: '全部', region: '全部', year: '全部', postage: '全部', currentPage: 0, pageSize: 8 },
       // film_first: []
     }
