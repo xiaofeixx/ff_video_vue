@@ -4,7 +4,7 @@
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
            <el-row :gutter="0" id="serach_hidden">
              <el-col :xl="4" :lg="3" :md="4" :sm="6" :xs="6" :span="2">
-               <el-menu-item index="#" disabled>
+               <el-menu-item  style="background-color: #FFFFFF">
                <div class="block" >
                  <el-image
                    style="height: 50px"
@@ -84,7 +84,7 @@ export default {
       searchContent: '',
       dialogWidth: 0,
       cardWidth: 0,
-      url: require('../assets/image/logo1.png'),
+      url: require('../assets/image/logo.jpg'),
       gridData: [{
         date: '2016-05-02',
         name: '王小虎',
